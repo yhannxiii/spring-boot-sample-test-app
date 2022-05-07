@@ -9,8 +9,19 @@ pipeline {
     }
 
     stage('Test') {
-      steps {
-        sh 'mvn -Dtest="com.example.testingweb.smoke.**" test'
+      parallel {
+        stage('Unit') {
+          steps {
+            sh 'mvn -Dtest="com.example.testingweb.smoke.**" test'
+          }
+        }
+
+        stage('Integration') {
+          steps {
+            sh 'mvn -Dtest="com.example.testingweb.integration.**" test'
+          }
+        }
+
       }
     }
 
