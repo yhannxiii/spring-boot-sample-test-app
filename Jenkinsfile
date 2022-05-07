@@ -35,6 +35,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sh 'mvn -B -DskipTests install'
+        echo 'install finished'
       }
     }
 
