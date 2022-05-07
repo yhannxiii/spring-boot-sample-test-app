@@ -13,6 +13,7 @@ pipeline {
         stage('Unit') {
           steps {
             sh 'mvn -Dtest="com.example.testingweb.smoke.**" test'
+            junit 'target/surefire-reports/*.xml'
           }
         }
 
