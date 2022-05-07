@@ -36,6 +36,7 @@ pipeline {
       steps {
         sh 'mvn -B -DskipTests install'
         echo 'install finished'
+        sh 'java -jar target/testing-web-complete'
       }
     }
 
