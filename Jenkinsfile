@@ -8,6 +8,12 @@ pipeline {
       }
     }
 
+    stage('Test') {
+      steps {
+        sh 'mvn -Dtest="com.example.testingweb.smoke.**" test'
+      }
+    }
+
   }
   tools {
     maven 'maven 3.8'
