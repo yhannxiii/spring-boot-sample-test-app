@@ -35,6 +35,10 @@ pipeline {
     stage('Deploy') {
       steps {
         sh 'mvn -B -DskipTests install'
+        dir(path: 'target') {
+          archiveArtifacts(artifacts: '*', onlyIfSuccessful: true)
+        }
+
       }
     }
 
