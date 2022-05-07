@@ -34,7 +34,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'mvn install'
+        sh 'mvn -B -DskipTests install'
       }
     }
 
