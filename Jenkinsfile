@@ -22,6 +22,13 @@ pipeline {
           }
         }
 
+        stage('Functional') {
+          steps {
+            sh '''mvn -Dtest="com.example.testingweb.functional.**" test
+'''
+          }
+        }
+
       }
     }
 
