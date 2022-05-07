@@ -32,6 +32,12 @@ pipeline {
       }
     }
 
+    stage('Deploy') {
+      steps {
+        sh 'mvn install'
+      }
+    }
+
   }
   tools {
     maven 'maven 3.8'
