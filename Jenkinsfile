@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''mvn -B -DskipTests clean package
-'''
+        sh 'mvn -B -DskipTests clean package'
+        archiveArtifacts(artifacts: '**/target/*.jar', onlyIfSuccessful: true)
       }
     }
 
@@ -25,8 +25,7 @@ pipeline {
 
         stage('Functional') {
           steps {
-            sh '''mvn -Dtest="com.example.testingweb.functional.**" test
-'''
+            sh 'mvn -Dtest="com.example.testingweb.functional.**" test'
           }
         }
 
@@ -34,13 +33,15 @@ pipeline {
     }
 
     stage('Deploy') {
+      when {
+        expression {
+          currentBuild.result == null || currentBuild.result == 'SUCCESS'
+        }
+
+      }
       steps {
         sh 'mvn -B -DskipTests install'
         sh 'java -jar target/testing-web-complete.jar &'
-        dir(path: 'target') {
-          archiveArtifacts(artifacts: '*', onlyIfSuccessful: true)
-        }
-
       }
     }
 
