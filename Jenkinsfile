@@ -40,6 +40,7 @@ pipeline {
 
       }
       steps {
+        input 'vous voulez continuer ?'
         sh 'mvn -B -DskipTests install'
         sh 'java -jar target/testing-web-complete.jar &'
       }
