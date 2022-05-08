@@ -39,8 +39,15 @@ pipeline {
         }
 
       }
+      input {
+        message 'Voulez-vous continuer ?'
+        id 'Allons-y'
+        parameters {
+          string(name: 'VALIDATEUR', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        }
+      }
       steps {
-        input 'vous voulez continuer ?'
+        echo "Validateur : ${VALIDATEUR}"
         sh 'mvn -B -DskipTests install'
         sh 'java -jar target/testing-web-complete.jar &'
       }
