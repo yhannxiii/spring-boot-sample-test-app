@@ -36,7 +36,6 @@ pipeline {
     stage('Deploy') {
       steps {
         sh 'mvn -B -DskipTests install'
-        sh 'java -jar target/testing-web-complete.jar --server.port=8081'
         dir(path: 'target') {
           archiveArtifacts(artifacts: '*', onlyIfSuccessful: true)
         }
