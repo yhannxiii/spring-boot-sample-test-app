@@ -39,5 +39,6 @@ pipeline {
   }
   tools {
     maven 'maven'
+    jdk 'java 11'
   }
 }
