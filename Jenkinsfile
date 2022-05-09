@@ -12,7 +12,7 @@ pipeline {
         stage('unit') {
           steps {
             bat 'mvn -Dtest="com.example.testingweb.smoke.**" test'
-            junit 'target/surfire-reports/*.xml'
+            junit(testResults: 'target/surfire-reports/*.xml', allowEmptyResults: true)
           }
         }
 
